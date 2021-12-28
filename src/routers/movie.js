@@ -25,11 +25,8 @@ router.post('/movieRating', authentication, async (req, res) => {
             'language': req.body.language,
             'released_on': req.body.released_on,
         }
-        console.log("query - ",movieQuery)
         const movie = await Movie.findOne(movieQuery)
-        console.log("movie - ",movie)
         let exists = false
-        console.log("sdkjf",movie.ratings)
         _.each(movie.ratings, (rating) => {
             if (_.get(rating, 'user_id') === req.user.user_id) {
                 rating['rating'] = req.body.rating
@@ -60,7 +57,12 @@ router.post('/movieRating', authentication, async (req, res) => {
 
 router.get('/movieRatings', authentication, async (req, res) => {
     try {
-        const movieRatings = await Movie.find().select('title genre description released_on average_rating')
+        const limit = +_.get(req, ['query', 'limit'], 10)
+        const skip = +_.get(req, ['query', 'skip'], 0)
+        const movieRatings = await Movie.find()
+            .select('title genre description released_on average_rating')
+            .limit(limit)
+            .skip(skip)
         res.send(movieRatings)
     } catch (e) {
         res.status(500).send()
