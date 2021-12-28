@@ -5,11 +5,8 @@ const router = new express.Router()
 
 router.post('/users', async (req, res) => {
     const user = new User(req.body)
-
     try {
-        console.log("Entered", JSON.stringify(user))
         await user.save()
-        console.log("Entered")
         const token = await user.generateAuthToken()
         res.status(201).send({ user, token })
     } catch (e) {
