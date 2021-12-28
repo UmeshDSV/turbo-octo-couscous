@@ -3,6 +3,8 @@ const Movie = require('../models/movie')
 const authentication = require('../middleware/authentication')
 const router = new express.Router()
 const _ = require('lodash')
+const NodeCache = require("node-cache");
+const internalCache = new NodeCache();
 
 router.post('/movies', authentication, async (req, res) => {
     const movie = new Movie({
@@ -59,11 +61,16 @@ router.get('/movieRatings', authentication, async (req, res) => {
     try {
         const limit = +_.get(req, ['query', 'limit'], 10)
         const skip = +_.get(req, ['query', 'skip'], 0)
-        const movieRatings = await Movie.find()
-            .select('title genre description released_on average_rating')
-            .limit(limit)
-            .skip(skip)
-        res.send(movieRatings)
+        const key = "movie_reatings_" + limit + "_" + skip
+        var cacheResponse = internalCache.get(key);
+        if (cacheResponse == undefined) {
+            cacheResponse = await Movie.find()
+                .select('title genre description released_on average_rating')
+                .limit(limit)
+                .skip(skip)
+            internalCache.set(key, cacheResponse, 120);
+        }
+        res.send(cacheResponse)
     } catch (e) {
         res.status(500).send()
     }
