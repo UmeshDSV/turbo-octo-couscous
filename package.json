@@ -1,0 +1,29 @@
+{
+  "name": "turbo-octo-couscous",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UmeshDSV/turbo-octo-couscous.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UmeshDSV/turbo-octo-couscous/issues"
+  },
+  "homepage": "https://github.com/UmeshDSV/turbo-octo-couscous#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.1.4",
+    "validator": "^13.7.0"
+  }
+}
