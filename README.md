@@ -30,11 +30,7 @@ Returns an Authentication Token
 
 3. To Logout (Requires Authentication) - \
 Type of request - POST \
-Request URL - http://localhost:3000/users/logout \
-Request Body - {\
-        "email" : <email>, Accepts only valid email address\
-        "password": <password>\
-}
+Request URL - http://localhost:3000/users/logout
 
 4. To add a movie (Requires Authentication) - \
 Type of request - POST \
@@ -58,7 +54,7 @@ Update can be performed only on genre or description or both.
 
 6. To delete a movie (Requires Authentication) - \
 Type of request - DELETE \
-Request URL - http://localhost:3000/movies/<movie_id> \
+Request URL - http://localhost:3000/movies/<movie_id>
 
 7. To rate a movie (Requires Authentication) - \
 Type of request - POST \
@@ -73,4 +69,10 @@ Request Body - {\
 8. To view all movie ratings (Requires Authentication) - \
 Type of request - GET \
 Request URL - http://localhost:3000/movieRatings?limit=10&skip=10 \
-Default value for limit is 10 and skip is 0 \
+Default value for limit is 10 and skip is 0 
+
+9. To logout from all sessions (Requires Authentication) - \
+Type of request - POST \
+Request URL - http://localhost:3000/users/logoutAll
+
+#### For the API's that requires authentication, in request headers add the key as 'Authorization' and corresponding value should be - Bearer <JWT_token>
