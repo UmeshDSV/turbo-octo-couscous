@@ -4,7 +4,7 @@
 Node version v15.14.0 is required \
 Run 'npm i' after cloning the repository to local \
 Run 'npm start' to start the application \
-.env file should be present with MONGO_DB_URI and APPLICATION_SECRET values \
+.env file should be present with MONGO_DB_URI and APPLICATION_SECRET values
 
 ## API's: 
 
