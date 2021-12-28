@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const uri = "mongodb+srv://admin:admin@cluster0.grhoq.mongodb.net/IMDB?retryWrites=true&w=majority"
+require('dotenv').config()
+const uri = process.env.MONGO_DB_URI
 
 mongoose.connect(uri, {
     useNewUrlParser: true
