@@ -6,7 +6,7 @@ Run 'npm i' after cloning the repository to local \
 Run 'npm start' to start the application \
 .env file should be present with MONGO_DB_URI and APPLICATION_SECRET values \
 
-API's: 
+## API's: 
 
 1. To register a new user - \
 Type of the request - POST \
@@ -28,10 +28,49 @@ Request Body - {\
 }\
 Returns an Authentication Token
 
-3. To Logout - \
+3. To Logout (Requires Authentication) - \
 Type of request - POST \
 Request URL - http://localhost:3000/users/logout \
 Request Body - {\
         "email" : <email>, Accepts only valid email address\
         "password": <password>\
-}\
+}
+
+4. To add a movie (Requires Authentication) - \
+Type of request - POST \
+Request URL - http://localhost:3000/movies \
+Request Body - {\
+         "title":<title> \
+        "language":<language> \
+        "genre":<genre> \
+        "released_on":<released_on> \
+        "description": <description> \
+}
+
+5. To update a movie (Requires Authentication) - \
+Type of request - PATCH \
+Request URL - http://localhost:3000/movies/<movie_id> \
+Request Body - {\
+        "genre":<genre> \
+        "description": <description> \
+}
+Update can be performed only on genre or description or both.
+
+6. To delete a movie (Requires Authentication) - \
+Type of request - DELETE \
+Request URL - http://localhost:3000/movies/<movie_id> \
+
+7. To rate a movie (Requires Authentication) - \
+Type of request - POST \
+Request URL - http://localhost:3000/movieRating \
+Request Body - {\
+        "title":<title> \
+        "language":<language> \
+        "released_on":<released_on> \
+        "rating": <rating> \
+}
+
+8. To view all movie ratings (Requires Authentication) - \
+Type of request - GET \
+Request URL - http://localhost:3000/movieRatings?limit=10&skip=10 \
+Default value for limit is 10 and skip is 0 \
